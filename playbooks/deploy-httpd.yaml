@@ -1,0 +1,8 @@
+---
+- name: "Test deploy of a Docker container using Ansible through Jenkins swarm"
+  hosts: docker
+  gather_facts: true
+  become: root
+
+  roles:
+    - httpd
