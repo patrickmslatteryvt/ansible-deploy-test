@@ -1,0 +1,28 @@
+[Unit]
+Description=httpd container
+Documentation=https://hub.docker.com/_/httpd/
+After=docker.service
+
+[Service]
+Type=simple
+Environment=IMAGE=httpd:2.4-alpine NAME=httpd
+TimeoutStartSec=120
+ExecStartPre=-/usr/bin/docker stop --time=60 ${NAME}
+ExecStartPre=-/usr/bin/docker rm ${NAME}
+ExecStartPre=-/bin/sh -c 'if ! docker images | tr -s " " : | grep "^${IMAGE}:"; then docker pull "${IMAGE}"; fi'
+ExecStart=/usr/bin/docker \
+  run \
+  --cpu-shares=512 \
+  --memory=128m \
+  --name=${NAME} \
+  --restart=always \
+  --volume=/etc/localtime:/etc/localtime:ro \
+  $IMAGE
+ExecStop=/usr/bin/docker stop --time=60 ${NAME}
+ExecStopPost=/usr/bin/docker rm ${NAME}
+Nice=19
+IOSchedulingClass=idle
+IOSchedulingPriority=7
+
+[Install]
+WantedBy=multi-user.target
