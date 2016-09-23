@@ -1,0 +1,21 @@
+---
+- name: "Copy the unit file for the httpd container"
+  copy:
+    src: httpd.service
+    dest: /etc/systemd/system/httpd.service
+    backup: yes
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"
+
+- name: "Enable the httpd service"
+  systemd:
+    daemon_reload: yes
+    name: httpd.service
+    enabled: yes
+    state: started
+    masked: no
+  register: systemd_result_service
+  failed_when: systemd_result_service.enabled == 'success' and
+               systemd_result_service.state == 'started'
+  changed_when: False
