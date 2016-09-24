@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Patrick M. Slattery
+  description: Deploy a httpd Docker container
+  company: MyWebGrocer
+  license: BSD
+  min_ansible_version: 2.2.0
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  categories:
+  - cloud
+  - system
+dependencies: []
