@@ -8,15 +8,15 @@
     group: root
     mode: "u=rw,g=r,o=r"
 
-# Requires Ansible v2.2
-#- name: "Enable the httpd service"
-#  systemd:
-#    daemon_reload: yes
-#    name: httpd.service
-#    enabled: yes
-#    state: started
-#    masked: no
-#  register: systemd_result_service
-#  failed_when: systemd_result_service.enabled == 'success' and
-#               systemd_result_service.state == 'started'
-#  changed_when: False
+# This task requires Ansible v2.2
+- name: "Enable the httpd service"
+  systemd:
+    daemon_reload: yes
+    name: httpd.service
+    enabled: yes
+    state: started
+    masked: no
+  register: systemd_result_service
+  failed_when: systemd_result_service.enabled == 'success' and
+               systemd_result_service.state == 'started'
+  changed_when: False
