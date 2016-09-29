@@ -1,0 +1,18 @@
+---
+# This task requires Ansible v2.2
+- name: "Stop and disable the httpd service"
+  systemd:
+    daemon_reload: no
+    name: httpd.service
+    enabled: no
+    state: stoped
+    masked: no
+  register: systemd_result_service
+  failed_when: systemd_result_service.disabled == 'success' and
+               systemd_result_service.state == 'stopped'
+  changed_when: False
+
+- name: "Delete the unit file for the httpd container"
+  file:
+    path: /etc/systemd/system/httpd.service
+    state: absent
