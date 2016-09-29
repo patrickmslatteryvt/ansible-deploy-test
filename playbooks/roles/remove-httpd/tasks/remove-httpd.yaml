@@ -5,10 +5,10 @@
     daemon_reload: no
     name: httpd.service
     enabled: no
-    state: stoped
+    state: stopped
     masked: no
   register: systemd_result_service
-  failed_when: systemd_result_service.disabled == 'success' and
+  failed_when: systemd_result_service.enabled == 'false' and
                systemd_result_service.state == 'stopped'
   changed_when: False
 
@@ -16,3 +16,6 @@
   file:
     path: /etc/systemd/system/httpd.service
     state: absent
+
+- name: "Reload services"
+  shell: systemctl daemon-reload
