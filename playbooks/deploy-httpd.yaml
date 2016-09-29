@@ -4,6 +4,9 @@
   gather_facts: true
   become: root
 
+  vars:
+    action: "DEPLOY"
+
   roles:
     - httpd
 

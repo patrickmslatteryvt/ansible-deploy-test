@@ -1,3 +1,0 @@
----
-- include: remove-httpd.yaml
-  tags: [httpd,remove-httpd]

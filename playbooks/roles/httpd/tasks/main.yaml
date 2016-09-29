@@ -1,3 +1,8 @@
 ---
 - include: deploy-httpd.yaml
   tags: [httpd,deploy-httpd]
+  when: action == "DEPLOY"
+
+- include: remove-httpd.yaml
+  tags: [httpd,remove-httpd]
+  when: action == "REMOVE"

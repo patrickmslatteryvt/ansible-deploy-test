@@ -4,5 +4,10 @@
   gather_facts: true
   become: root
 
+  vars:
+    action: "REMOVE"
+
   roles:
-    - remove-httpd
+    - httpd
+
+# playbooks/remove-httpd.yaml -v
