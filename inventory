@@ -2,8 +2,9 @@
 localhost ansible_python_interpreter=python connection=local
 
 [docker]
-zfs01.devdmz.mywebgrocer.com
-zfs02.devdmz.mywebgrocer.com
+docker01.devdmz.mywebgrocer.com
+docker02.devdmz.mywebgrocer.com
+docker03.devdmz.mywebgrocer.com
 
 [docker:vars]
 ansible_user=root
