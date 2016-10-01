@@ -1,9 +1,4 @@
 ---
-- name: "Run the appropriate action"
-  assert:
-    that:
-      - action == "DEPLOY"
-
 - name: "Copy the unit file for the httpd container"
   copy:
     src: httpd.service

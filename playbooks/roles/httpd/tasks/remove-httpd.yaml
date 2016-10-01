@@ -1,9 +1,4 @@
 ---
-- name: "Run the appropriate action"
-  assert:
-    that:
-      - action == "REMOVE"
-
 # This task requires Ansible v2.2
 - name: "Stop and disable the httpd service"
   systemd:
